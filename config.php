@@ -2,11 +2,12 @@
 //-AUTOLOAD
 spl_autoload_register(function($nameClass){
 	
-	$filename = str_replace ("\\", "/", $nameClass . ".php");
+	$dirClass = "class";
+	$filename = str_replace ("\\", "/", $dirClass . DIRECTORY_SEPARATOR . $nameClass . ".php");
 	
 	if(file_exists($filename)) require_once $filename;
 
-});
+});	
 
 $db_data = array(
 	"db_type" => 'mysql',
