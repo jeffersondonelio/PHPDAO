@@ -7,7 +7,7 @@ spl_autoload_register(function($nameClass){
 	
 	if(file_exists($filename)) require_once $filename;
 
-});	
+});
 
 $db_data = array(
 	"db_type" => 'mysql',
