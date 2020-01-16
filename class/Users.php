@@ -31,16 +31,9 @@ class Users {
 		));
 	}
 
-	public function loadById($id)
+	public function setData($row)
 	{
-
-		$sql = new Sql();
-		$query = " SELECT * FROM tb_usuarios WHERE idusuario = :ID";
-		$results = $sql->select($query,array(":ID" => $id));
-	
-		if(isset($results[0])){
-			$row = $results[0];
-
+		if(isset($row)){
 			foreach($row as $key => $value){
 				if($key == "dtcadastro"){
 					$dt = new DateTime($value);
@@ -50,6 +43,16 @@ class Users {
 				}
 			}
 		}
+		
+	}
+
+	public function loadById($id)
+	{
+
+		$sql = new Sql();
+		$query = " SELECT * FROM tb_usuarios WHERE idusuario = :ID";
+		$results = $sql->select($query,array(":ID" => $id));
+		$this->setData($results[0]);
 	}
 	
 	public static function getList()
@@ -77,6 +80,32 @@ class Users {
 			return $results;
 		}else{
 			throw new Exception("Login e/ou senha incorretos");
+		}
+	}
+		
+	public function insert()
+	{
+		$sql = new Sql();
+		/*
+		CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_users_insert`(
+			pdeslogin varchar(64),
+			pdessenha varchar(256)
+		)
+		BEGIN
+
+			INSERT INTO tb_usuarios (deslogin,dessenha) VALUE (pdeslogin,pdessenha);
+			
+			SELECT * FROM tb_usuarios WHERE idusuario = last_insert_id();
+
+		END
+		*/
+		$results = $sql->select("CALL sp_users_insert(:LOGIN,:PASS)",array(
+			":LOGIN" => $this->deslogin,
+			":PASS" => $this->dessenha
+		));
+
+		if(count($results)){
+			return $this->setData($results[0]);
 		}
 	}
 

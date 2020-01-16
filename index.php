@@ -19,9 +19,11 @@ echo "</pre>";
 */
 
 $users = new Users();
-$user = $users->login('root','root'); 
+$users->deslogin = 'teste1'; 
+$users->dessenha = 'teste1'; 
+$users->insert();
 
 echo "<pre>";
-print_r($user);
+print_r($users);
 echo "</pre>";
 ?>
