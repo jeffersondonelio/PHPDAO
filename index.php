@@ -17,11 +17,17 @@ echo "<pre>";
 print_r($users);
 echo "</pre>";
 */
-
+/*
+ * INSERT
 $users = new Users();
 $users->deslogin = 'teste1'; 
 $users->dessenha = 'teste1'; 
 $users->insert();
+*/
+
+$users = new Users();
+$users->loadById('2');
+$users->update("jefferson","321ewq");
 
 echo "<pre>";
 print_r($users);

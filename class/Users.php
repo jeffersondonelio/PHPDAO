@@ -108,6 +108,23 @@ class Users {
 			return $this->setData($results[0]);
 		}
 	}
+	
+	public function update($login,$pass)
+	{
+		$this->deslogin = $login;
+		$this->dessenha = $pass;
+		
+		$query = "UPDATE tb_usuarios SET deslogin = :LOGIN, dessenha = :PASS WHERE id = :ID";
+		$parameters = array(
+			":LOGIN" => $this->deslogin,
+			":PASS" => $this->dessenha, 
+			":ID" => $this->idusuario
+		);
+		
+		$sql = new Sql();
+		$sql->query($query,$parameters);
+
+	}
 
 }
 
