@@ -10,9 +10,18 @@ $users = $sql->select($query);
 echo "<pre>";
 print_r($users);
 echo "</pre>";
+
+
+$users = Users::search('root');
+echo "<pre>";
+print_r($users);
+echo "</pre>";
 */
 
-$user = new Users();
-$user->loadById('3');
-echo $user;
+$users = new Users();
+$user = $users->login('root','root'); 
+
+echo "<pre>";
+print_r($user);
+echo "</pre>";
 ?>

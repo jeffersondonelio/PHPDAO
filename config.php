@@ -9,12 +9,5 @@ spl_autoload_register(function($nameClass){
 
 });
 
-$db_data = array(
-	"db_type" => 'mysql',
-	"db_host" => 'localhost',
-	"db_name" => 'dbphp7',
-	"db_user" => 'root',
-	"db_pass" => 'root'
-);
 ?>
 

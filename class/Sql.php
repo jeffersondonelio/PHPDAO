@@ -3,21 +3,24 @@
 class Sql extends PDO {
 
 	private $conn;
+	private $db_type = 'mysql';
+	private $db_host = 'localhost';
+	private $db_name = 'dbphp7';
+	private $db_user = 'root';
+	private $db_pass = 'root';
 	
-	public function __construct($data)
+	public function __construct()
 	{
-		if(!empty($data)){
-			$conect = $data['db_type'].":host=".$data['db_host'].";dbname=".$data['db_name'];
-			$this->conn = new PDO($conect, $data['db_user'] , $data['db_pass']);
-		}else{
-			die("ERRO AO CONECTAR NO BANCO");
-		}
+		$conect = $this->db_type.":host=".$this->db_host.";dbname=".$this->db_name;
+		$this->conn = new PDO($conect, $this->db_user , $this->db_pass);
 	}
 
 	private function setParams($statement,$parameters = array())
 	{
-		foreach($parameters as $key => $value){
-			$this->setParam($statement,$key, $value);
+		if(!empty($parameters)){
+			foreach($parameters as $key => $value){
+				$this->setParam($statement,$key, $value);
+			}
 		}
 	} 
 
