@@ -27,8 +27,11 @@ $users->insert();
 
 $users = new Users();
 $users->loadById('2');
-$users->update("jefferson","321ewq");
+echo "<pre>";
+print_r($users);
+echo "</pre>";
 
+$users->update("teste update","jotaalterado");
 echo "<pre>";
 print_r($users);
 echo "</pre>";

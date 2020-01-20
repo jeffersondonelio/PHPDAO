@@ -48,7 +48,6 @@ class Users {
 
 	public function loadById($id)
 	{
-
 		$sql = new Sql();
 		$query = " SELECT * FROM tb_usuarios WHERE idusuario = :ID";
 		$results = $sql->select($query,array(":ID" => $id));
@@ -114,7 +113,7 @@ class Users {
 		$this->deslogin = $login;
 		$this->dessenha = $pass;
 		
-		$query = "UPDATE tb_usuarios SET deslogin = :LOGIN, dessenha = :PASS WHERE id = :ID";
+		$query = "UPDATE tb_usuarios SET deslogin = :LOGIN, dessenha = :PASS WHERE idusuario = :ID";
 		$parameters = array(
 			":LOGIN" => $this->deslogin,
 			":PASS" => $this->dessenha, 
@@ -123,7 +122,6 @@ class Users {
 		
 		$sql = new Sql();
 		$sql->query($query,$parameters);
-
 	}
 
 }
