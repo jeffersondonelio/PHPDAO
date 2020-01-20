@@ -124,6 +124,20 @@ class Users {
 		$sql->query($query,$parameters);
 	}
 
+	public function delete()
+	{
+		$query = "delete from tb_usuarios WHERE idusuario = :ID;";
+		$parameters = array(":ID" => $this->idusuario);
+
+		$sql = new Sql();
+		$sql->query($query,$parameters);
+		
+		$this->idusuario = null;
+		$this->deslogin = null;
+		$this->dessenha = null;
+		$this->dtcadastro = null;
+		
+	}
 }
 
 ?>

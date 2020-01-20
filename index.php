@@ -31,7 +31,7 @@ echo "<pre>";
 print_r($users);
 echo "</pre>";
 
-$users->update("teste update","jotaalterado");
+$users->delete();
 echo "<pre>";
 print_r($users);
 echo "</pre>";
